@@ -1,9 +1,12 @@
 package com.margonarim.mutantfinder.persistence;
 
+import com.margonarim.mutantfinder.model.Human;
+
 import javax.persistence.*;
 
 @Entity
-public class Human {
+@Table(name = "human")
+public class HumanDAO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,11 +17,11 @@ public class Human {
 
     private boolean isMutant;
 
-    protected Human() {}
+    protected HumanDAO() {}
 
-    public Human(String[] dna, boolean isMutant) {
-        this.dna = dna;
-        this.isMutant = isMutant;
+    public HumanDAO(Human human) {
+        this.dna = human.getDna();
+        this.isMutant = human.isMutant();
     }
 
     public long getId() {

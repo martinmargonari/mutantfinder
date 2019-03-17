@@ -8,7 +8,7 @@ import com.margonarim.mutantfinder.utils.LetterGridUtils;
 import java.util.ArrayList;
 
 /**
- * The {@code LetterGrid} class represents a human being
+ * The {@code Human} class represents a human being
  */
 public class Human extends Validable {
 
@@ -33,7 +33,12 @@ public class Human extends Validable {
     private String[] dna;
 
     /**
-     *  Initializes a newly created {@code Human} object so that it represents
+     * boolean variable to store if a Human is mutant or not, as it is defined
+     */
+    private boolean mutant;
+
+    /**
+     *  Initializes a newly created {@code HumanDAO} object so that it represents
      *  a unique human being, with a specified dna
      *
      *  @param dna a valid dna, formed as it is defined
@@ -45,6 +50,8 @@ public class Human extends Validable {
         rules.add(new DNASquareRule());
         rules.add(new DNABaseRule());
         validate();
+
+        mutant = isMutant(dna);
     }
 
     public String[] getDna() {
@@ -79,13 +86,7 @@ public class Human extends Validable {
         return (sequencesFound == 2);
     }
 
-    /**
-     *  Returns true if and only if this human represents a
-     *  mutant as it is defined
-     *
-     *  @return true if this human represents a mutant
-     */
     public boolean isMutant() {
-        return Human.isMutant(dna);
+        return mutant;
     }
 }
