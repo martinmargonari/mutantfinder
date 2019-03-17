@@ -10,10 +10,9 @@ public class LetterGridTest {
 
     private LetterGrid letterGrid;
 
-
     @Before
     public void init() {
-        letterGrid = new LetterGrid(new char[][]{{'a', 'b', 'c'}, {'d', 'e', 'f'}, {'g', 'h', 'i'}});
+            letterGrid = new LetterGrid(new char[][]{{'a', 'b', 'c'}, {'d', 'e', 'f'}, {'g', 'h', 'i'}});
 
         /*                | a | b | c |
          *   FORMED GRID: | d | e | f |
@@ -115,4 +114,11 @@ public class LetterGridTest {
 
         assertFalse(letterGrid.isPresent("xyz"));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void givenGridOfWords_whenCreatingGridWithWrongSize_shouldThrowIllegalArgumentException() {
+
+        new LetterGrid(new char[][]{{'a', 'b', 'c'}, {'d', 'e', 'f'}, {'g', 'h'}});
+    }
+
 }

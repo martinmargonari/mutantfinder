@@ -1,5 +1,7 @@
 package com.margonarim.mutantfinder.model;
 
+import com.margonarim.mutantfinder.model.exceptions.IncompatibleDNASequenceException;
+import com.margonarim.mutantfinder.model.exceptions.MalformedDNASequenceException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,5 +39,14 @@ public class HumanTest {
         assertTrue(mutant.isMutant());
     }
 
+    @Test(expected = IncompatibleDNASequenceException.class)
+    public void givenWrongSequenceDNA_whenCreatingNewHuman_shouldThrowIncompatibleDNASequenceException() {
+        new Human(new String[]{"CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"});
+    }
+
+    @Test(expected = MalformedDNASequenceException.class)
+    public void givenMalformedDNA_whenCreatingNewHuman_shouldThrowMalformedDNASequenceException() {
+        new Human(new String[]{"BTGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"});
+    }
 
 }

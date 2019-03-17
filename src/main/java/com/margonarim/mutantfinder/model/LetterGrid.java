@@ -1,11 +1,16 @@
 package com.margonarim.mutantfinder.model;
 
+import com.margonarim.mutantfinder.model.rules.LetterGridConsistentRule;
+import com.margonarim.mutantfinder.model.rules.Validable;
+
+import java.util.ArrayList;
+
 /**
  * The {@code LetterGrid} class represents grids of character strings
  * which may contain words in it, in specific directions that can be
  * specified
  */
-public class LetterGrid {
+public class LetterGrid extends Validable {
 
     /** Grid of letters */
     private char[][] grid;
@@ -52,6 +57,10 @@ public class LetterGrid {
         this.grid = grid;
         this.height = grid.length;
         this.width = grid[0].length;
+
+        rules = new ArrayList<>();
+        rules.add(new LetterGridConsistentRule());
+        validate();
     }
 
     /**

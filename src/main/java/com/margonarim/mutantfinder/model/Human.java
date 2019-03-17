@@ -1,11 +1,16 @@
 package com.margonarim.mutantfinder.model;
 
+import com.margonarim.mutantfinder.model.rules.DNABaseRule;
+import com.margonarim.mutantfinder.model.rules.DNASquareRule;
+import com.margonarim.mutantfinder.model.rules.Validable;
 import com.margonarim.mutantfinder.utils.LetterGridUtils;
+
+import java.util.ArrayList;
 
 /**
  * The {@code LetterGrid} class represents a human being
  */
-public class Human {
+public class Human extends Validable {
 
     /** Array containing the four types of nitrogen bases, which define the DNA
      *  A: Adenine
@@ -13,7 +18,7 @@ public class Human {
      *  C: Cytosine
      *  G: Guanine
      */
-    private static final char[] NITROGEN_BASES = {'A', 'T', 'C', 'G'};
+    public static final char[] NITROGEN_BASES = {'A', 'T', 'C', 'G'};
 
     /**
      *  An array containing each one of the mutant sequences that can be present in the DNA
@@ -35,6 +40,11 @@ public class Human {
      */
     public Human(String[] dna) {
         this.dna = dna;
+
+        rules = new ArrayList<>();
+        rules.add(new DNASquareRule());
+        rules.add(new DNABaseRule());
+        validate();
     }
 
     public String[] getDna() {
