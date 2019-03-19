@@ -27,9 +27,7 @@ public class HumanControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-
-
+    
     @Autowired
     private ObjectMapper objectMapper;
 

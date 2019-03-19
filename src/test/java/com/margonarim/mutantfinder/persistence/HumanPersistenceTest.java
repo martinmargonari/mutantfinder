@@ -53,6 +53,7 @@ public class HumanPersistenceTest {
         
         humanRepository.save(humanDAO);
         humanRepository.save(humanDAO2);
+        humanRepository.findAll();
     }
 
     @Test
